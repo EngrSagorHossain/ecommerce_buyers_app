@@ -1,0 +1,26 @@
+import 'controller/signin_controller.dart';import 'package:ecommerce_buyers_app/core/app_export.dart';import 'package:ecommerce_buyers_app/core/utils/validation_functions.dart';import 'package:ecommerce_buyers_app/widgets/custom_elevated_button.dart';import 'package:ecommerce_buyers_app/widgets/custom_icon_button.dart';import 'package:ecommerce_buyers_app/widgets/custom_text_form_field.dart';import 'package:flutter/material.dart';import 'package:ecommerce_buyers_app/domain/googleauth/google_auth_helper.dart';
+// ignore_for_file: must_be_immutable
+class SigninScreen extends GetWidget<SigninController> {SigninScreen({Key? key}) : super(key: key);
+
+GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+@override Widget build(BuildContext context) { mediaQueryData = MediaQuery.of(context); return SafeArea(child: Scaffold(resizeToAvoidBottomInset: false, body: Form(key: _formKey, child: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 16.v), child: Column(children: [_buildWelcomeBackRow(), SizedBox(height: 8.v), Align(alignment: Alignment.centerLeft, child: SizedBox(width: 219.h, child: Text("msg_please_inter_your".tr, maxLines: 2, overflow: TextOverflow.ellipsis, style: CustomTextStyles.bodyMediumBluegray400_1.copyWith(height: 1.71)))), SizedBox(height: 37.v), CustomTextFormField(controller: controller.phoneNumberController, hintText: "msg_enter_email_phone".tr, hintStyle: CustomTextStyles.bodyLargeBluegray400, textInputType: TextInputType.emailAddress, validator: (value) {if (value == null || (!isValidEmail(value, isRequired: true))) {return "err_msg_please_enter_valid_email".tr;} return null;}), SizedBox(height: 15.v), CustomTextFormField(controller: controller.passwordController, hintText: "msg_enter_your_password2".tr, hintStyle: CustomTextStyles.bodyLargeBluegray400, textInputAction: TextInputAction.done, textInputType: TextInputType.visiblePassword, validator: (value) {if (value == null || (!isValidPassword(value, isRequired: true))) {return "err_msg_please_enter_valid_password".tr;} return null;}, obscureText: true, borderDecoration: TextFormFieldStyleHelper.outlineGrayTL6, fillColor: appTheme.whiteA700), SizedBox(height: 45.v), Align(alignment: Alignment.centerRight, child: Text("msg_forgot_password".tr, style: CustomTextStyles.titleSmallPoppinsPrimaryContainer)), SizedBox(height: 24.v), CustomElevatedButton(height: 48.v, text: "lbl_sign_in".tr, buttonStyle: CustomButtonStyles.fillPrimaryTL16, buttonTextStyle: CustomTextStyles.titleMediumWhiteA70016, onPressed: () {onTapSignIn();}), SizedBox(height: 38.v), Text("lbl_signin_with".tr, style: CustomTextStyles.titleSmallPoppinsBluegray400), SizedBox(height: 24.v), Row(mainAxisAlignment: MainAxisAlignment.center, children: [CustomIconButton(height: 58.v, width: 60.h, padding: EdgeInsets.all(16.h), decoration: IconButtonStyleHelper.outlineBlue, child: CustomImageView(imagePath: ImageConstant.imgThumbsUp)), Padding(padding: EdgeInsets.only(left: 30.h), child: CustomIconButton(height: 58.v, width: 60.h, padding: EdgeInsets.all(16.h), decoration: IconButtonStyleHelper.outlineBlue, onTap: () {onTapBtnGoogle();}, child: CustomImageView(imagePath: ImageConstant.imgGoogle)))]), SizedBox(height: 39.v), GestureDetector(onTap: () {onTapTxtNotregistraryet();}, child: RichText(text: TextSpan(children: [TextSpan(text: "msg_not_registrar_yet2".tr, style: CustomTextStyles.bodyMediumBluegray400), TextSpan(text: " "), TextSpan(text: "lbl_sign_up".tr, style: CustomTextStyles.titleSmallPoppinsPrimarySemiBold)]), textAlign: TextAlign.left)), SizedBox(height: 5.v)]))))); } 
+/// Section Widget
+Widget _buildWelcomeBackRow() { return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.start, children: [Column(children: [SizedBox(width: 190.h, child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [CustomIconButton(height: 42.adaptSize, width: 42.adaptSize, padding: EdgeInsets.all(11.h), onTap: () {onTapBtnArrowDown();}, child: CustomImageView(imagePath: ImageConstant.imgArrowDownPrimarycontainer)), Padding(padding: EdgeInsets.only(top: 9.v, bottom: 5.v), child: Text("lbl_log_in".tr, style: theme.textTheme.titleMedium))])), SizedBox(height: 32.v), Text("lbl_welcome_back".tr, style: theme.textTheme.headlineSmall)]), CustomImageView(imagePath: ImageConstant.imgEllipse, height: 49.v, width: 64.h, margin: EdgeInsets.only(top: 28.v, bottom: 35.v))]); } 
+/// Navigates to the cartScreen when the action is triggered.
+onTapBtnArrowDown() { Get.toNamed(AppRoutes.cartScreen, ); } 
+/// Navigates to the verificationOneScreen when the action is triggered.
+onTapSignIn() { Get.toNamed(AppRoutes.verificationOneScreen, ); } 
+onTapBtnGoogle() async  {         await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
+          if(googleUser!=null){
+            //TODO Actions to be performed after signin
+          } else {
+            Get.snackbar('Error', 'user data is empty');
+          }
+        }).catchError((onError) {
+            Get.snackbar('Error', onError.toString());
+        });
+         } 
+/// Navigates to the signupOneScreen when the action is triggered.
+onTapTxtNotregistraryet() { Get.toNamed(AppRoutes.signupOneScreen, ); } 
+ }

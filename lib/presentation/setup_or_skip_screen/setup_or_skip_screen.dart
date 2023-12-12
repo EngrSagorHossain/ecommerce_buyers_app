@@ -1,0 +1,10 @@
+import 'controller/setup_or_skip_controller.dart';import 'package:ecommerce_buyers_app/core/app_export.dart';import 'package:ecommerce_buyers_app/widgets/custom_elevated_button.dart';import 'package:flutter/material.dart';class SetupOrSkipScreen extends GetWidget<SetupOrSkipController> {const SetupOrSkipScreen({Key? key}) : super(key: key);
+
+@override Widget build(BuildContext context) { mediaQueryData = MediaQuery.of(context); return SafeArea(child: Scaffold(body: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 59.v), child: Column(children: [SizedBox(height: 11.v), Text("msg_welcome_to_abc_com".tr, style: theme.textTheme.titleMedium), SizedBox(height: 10.v), Container(width: 283.h, margin: EdgeInsets.only(left: 22.h, right: 20.h), child: Text("msg_it_is_a_long_established".tr, maxLines: 3, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: CustomTextStyles.bodyMediumBluegray400_1.copyWith(height: 1.29))), SizedBox(height: 58.v), CustomImageView(imagePath: ImageConstant.imgPersonalSettingsRafiki, height: 321.adaptSize, width: 321.adaptSize), SizedBox(height: 55.v), _buildSignUpButtons(), SizedBox(height: 31.v), GestureDetector(onTap: () {onTapTxtSkipForNow();}, child: Text("lbl_skip_for_now".tr, style: CustomTextStyles.titleMediumPrimary))])))); } 
+/// Section Widget
+Widget _buildSignUpButtons() { return Row(mainAxisAlignment: MainAxisAlignment.center, children: [Expanded(child: CustomElevatedButton(text: "lbl_sign_up".tr, margin: EdgeInsets.only(right: 7.h), buttonTextStyle: CustomTextStyles.titleMediumWhiteA70016)), Expanded(child: CustomElevatedButton(text: "lbl_sign_in".tr, margin: EdgeInsets.only(left: 7.h), buttonTextStyle: CustomTextStyles.titleMediumWhiteA70016, onPressed: () {onTapSignIn();}))]); } 
+/// Navigates to the signinOneTabContainerScreen when the action is triggered.
+onTapSignIn() { Get.toNamed(AppRoutes.signinOneTabContainerScreen, ); } 
+/// Navigates to the homeContainerScreen when the action is triggered.
+onTapTxtSkipForNow() { Get.toNamed(AppRoutes.homeContainerScreen, ); } 
+ }

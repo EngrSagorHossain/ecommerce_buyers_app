@@ -1,0 +1,5 @@
+import 'specificshop_item_model.dart';import '../../../core/app_export.dart';/// This class defines the variables used in the [specific_shop_screen],
+/// and is typically used to hold data that is passed between different parts of the application.
+class SpecificShopModel {Rx<List<SpecificshopItemModel>> specificshopItemList = Rx(List.generate(7,(index) => SpecificshopItemModel()));
+
+ }

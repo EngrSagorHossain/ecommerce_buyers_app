@@ -1,0 +1,24 @@
+import 'controller/profile_controller.dart';import 'models/profile_model.dart';import 'package:ecommerce_buyers_app/core/app_export.dart';import 'package:ecommerce_buyers_app/widgets/app_bar/appbar_leading_iconbutton.dart';import 'package:ecommerce_buyers_app/widgets/app_bar/custom_app_bar.dart';import 'package:ecommerce_buyers_app/widgets/custom_icon_button.dart';import 'package:ecommerce_buyers_app/widgets/custom_outlined_button.dart';import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
+class ProfilePage extends StatelessWidget {ProfilePage({Key? key}) : super(key: key);
+
+ProfileController controller = Get.put(ProfileController(ProfileModel().obs));
+
+@override Widget build(BuildContext context) { mediaQueryData = MediaQuery.of(context); return SafeArea(child: Scaffold(body: Container(width: double.maxFinite, decoration: AppDecoration.fillWhiteA, child: Column(children: [_buildArrowDownStack(), SizedBox(height: 12.v), Expanded(child: SingleChildScrollView(child: Padding(padding: EdgeInsets.only(left: 24.h, right: 24.h, bottom: 5.v), child: Column(children: [Text("lbl_jhoney_deep".tr, style: CustomTextStyles.titleMediumGray900SemiBold), SizedBox(height: 19.v), _buildSeventyFiveRow(securityLabel: "msg_personal_information".tr, onTapSeventyFiveRow: () {onTapSeventyEight();}), SizedBox(height: 20.v), _buildSeventyFiveRow(securityLabel: "lbl_security".tr, onTapSeventyFiveRow: () {onTapSeventyFiveRow();}), SizedBox(height: 20.v), _buildSeventyFiveRow(securityLabel: "lbl_payment_setup".tr, onTapSeventyFiveRow: () {onTapSeventyTwo();}), SizedBox(height: 20.v), _buildSeventyFiveRow(securityLabel: "lbl_my_orders".tr, onTapSeventyFiveRow: () {onTapSeventy();}), SizedBox(height: 20.v), _buildSeventyFiveRow(securityLabel: "lbl_order_history".tr, onTapSeventyFiveRow: () {onTapSixtySeven();}), SizedBox(height: 34.v), CustomOutlinedButton(height: 52.v, text: "lbl_logout".tr, buttonStyle: CustomButtonStyles.outlineRed, buttonTextStyle: CustomTextStyles.titleSmallPoppinsPink300), SizedBox(height: 17.v), Text("msg_terms_conditions".tr, style: CustomTextStyles.titleSmallPoppinsPrimary)]))))])))); } 
+/// Section Widget
+Widget _buildArrowDownStack() { return SizedBox(height: 170.v, width: double.maxFinite, child: Stack(alignment: Alignment.bottomCenter, children: [CustomAppBar(height: 110.v, leadingWidth: double.maxFinite, leading: AppbarLeadingIconbutton(imagePath: ImageConstant.imgArrowDownPrimarycontainer, margin: EdgeInsets.fromLTRB(24.h, 16.v, 309.h, 52.v), onTap: () {onTapArrowDown();}), styleType: Style.bgFill), Align(alignment: Alignment.bottomCenter, child: SizedBox(height: 120.adaptSize, width: 120.adaptSize, child: Stack(alignment: Alignment.bottomRight, children: [CustomImageView(imagePath: ImageConstant.imgEllipse739, height: 120.adaptSize, width: 120.adaptSize, radius: BorderRadius.circular(60.h), alignment: Alignment.center), Padding(padding: EdgeInsets.only(right: 5.h, bottom: 16.v), child: CustomIconButton(height: 20.adaptSize, width: 20.adaptSize, padding: EdgeInsets.all(4.h), decoration: IconButtonStyleHelper.fillPrimary, alignment: Alignment.bottomRight, child: CustomImageView(imagePath: ImageConstant.imgFrameWhiteA700)))])))])); } 
+/// Common widget
+Widget _buildSeventyFiveRow({required String securityLabel, Function? onTapSeventyFiveRow, }) { return GestureDetector(onTap: () {onTapSeventyFiveRow!.call();}, child: Container(padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 13.v), decoration: AppDecoration.outlineGray30001.copyWith(borderRadius: BorderRadiusStyle.roundedBorder10), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Padding(padding: EdgeInsets.only(top: 2.v), child: Text(securityLabel, style: CustomTextStyles.titleSmallPoppinsGray800.copyWith(color: appTheme.gray800))), CustomImageView(imagePath: ImageConstant.imgArrowRightPrimarycontainer, height: 20.adaptSize, width: 20.adaptSize, margin: EdgeInsets.only(top: 1.v))]))); } 
+/// Navigates to the homeContainerScreen when the action is triggered.
+onTapArrowDown() { Get.toNamed(AppRoutes.homeContainerScreen, ); } 
+/// Navigates to the personalAccountSetupTwoScreen when the action is triggered.
+onTapSeventyEight() { Get.toNamed(AppRoutes.personalAccountSetupTwoScreen, ); } 
+/// Navigates to the personalAccountSetupTwoScreen when the action is triggered.
+onTapSeventyFiveRow() { Get.toNamed(AppRoutes.personalAccountSetupTwoScreen, ); } 
+/// Navigates to the addCardBlankScreen when the action is triggered.
+onTapSeventyTwo() { Get.toNamed(AppRoutes.addCardBlankScreen, ); } 
+/// Navigates to the orderTwoTabContainerScreen when the action is triggered.
+onTapSeventy() { Get.toNamed(AppRoutes.orderTwoTabContainerScreen, ); } 
+/// Navigates to the completeOrderTabContainerScreen when the action is triggered.
+onTapSixtySeven() { Get.toNamed(AppRoutes.completeOrderTabContainerScreen, ); } 
+ }
